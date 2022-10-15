@@ -24,4 +24,9 @@ class CarsViews(ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+
+        owner = Owner.objects.get(pk=serializer.validated_data['owner'].id)
+        owner.sale_opportunity = False
+        owner.save()
+
         return Response(serializer.data, status=status.HTTP_201_CREATED)

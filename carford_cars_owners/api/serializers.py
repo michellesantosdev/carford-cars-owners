@@ -16,3 +16,10 @@ class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
         fields = '__all__'
+
+    def validate_owner(self, value):
+        cars = Car.objects.filter(owner=value.id)
+        if len(cars) > 3:
+            raise serializers.ValidationError("One owner can have up to 3 vehicles.")
+
+        return value
