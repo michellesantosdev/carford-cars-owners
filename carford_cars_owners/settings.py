@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'carford_cars_owners.api',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [

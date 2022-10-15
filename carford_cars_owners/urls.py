@@ -17,9 +17,13 @@ from django.contrib import admin
 from django.conf.urls import include
 from carford_cars_owners.api.urls import app_name
 from django.urls import path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 
+schema_view = get_schema_view(openapi.Info('CarFord Cars and Owners', 'v1'), public=True)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('carford_cars_owners.api.urls', namespace=app_name)),
+    path('swagger/', schema_view.with_ui(), name='schema-swagger-ui'),
 ]
