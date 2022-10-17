@@ -5,7 +5,7 @@ from carford_cars_owners.api.models import Owner, Car
 from carford_cars_owners.api.serializers import OwnerSerializer, CarSerializer
 
 
-class OwnersViews(GenericViewSet, mixins.ListModelMixin):
+class OwnersViews(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
     queryset = Owner.objects.all()
     serializer_class = OwnerSerializer
 
@@ -16,7 +16,7 @@ class OwnersViews(GenericViewSet, mixins.ListModelMixin):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class CarsViews(GenericViewSet, mixins.ListModelMixin):
+class CarsViews(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
 
