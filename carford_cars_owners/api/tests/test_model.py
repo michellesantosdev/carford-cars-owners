@@ -16,3 +16,4 @@ def test_must_create_car(car, owner):
 def test_must_create_owner(owner):
     assert Owner.objects.count() == 1
     assert owner.name == 'Michelle Santos'
+    assert owner.sale_opportunity is True

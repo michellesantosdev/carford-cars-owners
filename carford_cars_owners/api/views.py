@@ -1,11 +1,11 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import GenericViewSet, mixins
 from rest_framework.response import Response
 from rest_framework import status
 from carford_cars_owners.api.models import Owner, Car
 from carford_cars_owners.api.serializers import OwnerSerializer, CarSerializer
 
 
-class OwnersViews(ModelViewSet):
+class OwnersViews(GenericViewSet, mixins.ListModelMixin):
     queryset = Owner.objects.all()
     serializer_class = OwnerSerializer
 
@@ -16,7 +16,7 @@ class OwnersViews(ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class CarsViews(ModelViewSet):
+class CarsViews(GenericViewSet, mixins.ListModelMixin):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
 
